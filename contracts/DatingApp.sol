@@ -1,13 +1,13 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.20;
 
-// Приложение для знакомств с зашифрованными сообщениями
+// Dating application with encrypted messages / 暗号化されたメッセージでデートアプリケーション
 contract DatingApp {
     struct Profile {
         address owner;
-        string avatar; // IPFS hash или URL
-        string socialLinks; // JSON строка с ссылками
-        string description; // описание профиля
+        string avatar; // IPFS hash or URL / IPFSハッシュまたはURL
+        string socialLinks; // JSON string with links / リンクを含むJSON文字列
+        string description; // Profile description / プロフィール説明
         bool exists;
         uint256 createdAt;
     }
@@ -15,20 +15,20 @@ contract DatingApp {
     struct Message {
         address from;
         address to;
-        bytes32 encryptedMessage; // зашифрованное сообщение
+        bytes32 encryptedMessage; // Encrypted message / 暗号化されたメッセージ
         uint256 timestamp;
     }
 
     mapping(address => Profile) public profiles;
-    mapping(address => Message[]) public sentMessages; // сообщения от пользователя
-    mapping(address => Message[]) public receivedMessages; // сообщения к пользователю
-    address[] public allUsers; // все пользователи с профилями
+    mapping(address => Message[]) public sentMessages; // Messages sent by user / ユーザーが送信したメッセージ
+    mapping(address => Message[]) public receivedMessages; // Messages received by user / ユーザーが受信したメッセージ
+    address[] public allUsers; // All users with profiles / プロフィールを持つすべてのユーザー
 
     event ProfileCreated(address indexed user);
     event ProfileUpdated(address indexed user);
     event MessageSent(address indexed from, address indexed to, bytes32 encryptedMessage);
 
-    // Создать или обновить профиль
+    // Create or update profile / プロフィールを作成または更新
     function createProfile(
         string memory avatar,
         string memory socialLinks,
@@ -54,7 +54,7 @@ contract DatingApp {
         }
     }
 
-    // Отправить зашифрованное сообщение
+    // Send encrypted message / 暗号化されたメッセージを送信
     function sendMessage(
         address to,
         bytes32 encryptedMessage,
@@ -78,7 +78,7 @@ contract DatingApp {
         emit MessageSent(msg.sender, to, encryptedMessage);
     }
 
-    // Получить профиль
+    // Get profile / プロフィールを取得
     function getProfile(address user) external view returns (
         address owner,
         string memory avatar,
@@ -98,12 +98,12 @@ contract DatingApp {
         );
     }
 
-    // Получить все профили
+    // Get all profiles / すべてのプロフィールを取得
     function getAllUsers() external view returns (address[] memory) {
         return allUsers;
     }
 
-    // Получить сообщения пользователя
+    // Get user messages / ユーザーのメッセージを取得
     function getSentMessages(address user) external view returns (
         address[] memory to,
         bytes32[] memory messages,
@@ -121,7 +121,7 @@ contract DatingApp {
         }
     }
 
-    // Получить полученные сообщения
+    // Get received messages / 受信したメッセージを取得
     function getReceivedMessages(address user) external view returns (
         address[] memory from,
         bytes32[] memory messages,
@@ -139,6 +139,3 @@ contract DatingApp {
         }
     }
 }
-
-
-
