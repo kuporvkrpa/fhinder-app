@@ -84,7 +84,7 @@ NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID=your_project_id
 
 ### Contract Address / コントラクトアドレス
 
-**Address**: `To be deployed` / デプロイ待ち  
+**Address**: `0x2eeD268cC6C7065F32eEB719466BCBFFE800aCFb` / デプロイ待ち  
 **Network**: Sepolia testnet / Sepoliaテストネット
 
 ### Contract Functions / コントラクト機能
